@@ -34,15 +34,15 @@ module.exports = {
     //       },
     //     },
     //   },
+    devtool: 'inline-source-map',
     devServer: {
       static: {
           directory: path.join(__dirname, 'build'),
       },
       hot: true,
       proxy: {
-        '*': 'http://localhost:3000'
+        '/': 'http://localhost:3000'
       },
-      // proxy: 'http://localhost:3000',
       compress: true,
       port: 8080,
     },

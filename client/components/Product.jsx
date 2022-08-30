@@ -13,7 +13,7 @@ const Product = async (props) => {
   const [img, setImg] = useState('https://aliiissa.files.wordpress.com/2017/10/dyyy.png')
 
   // Populate fields on component mount
-  useEffect(() => {
+  useEffect(async () => {
     try {
       const res = await fetch(`/product/${productID}`);
       const { productName, inventory, price, description, img } = await res.json();

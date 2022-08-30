@@ -19,4 +19,10 @@ describe('Route integration', () => {
     });
   });
 
+  describe('/', () => {
+    describe('GET', () => {
+      
+    });
+  });
+
 });

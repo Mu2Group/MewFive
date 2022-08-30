@@ -7,7 +7,7 @@
     "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --hot --color\" \"nodemon ./server/server.js\"",
     "start": "NODE_ENV=production nodemon server/server.js --open",
     "build": "webpack",
-    "test": "jest --verbose --watch"
+    "test": "jest --verbose --watchAll --coverage"
   },
   "repository": {
     "type": "git",
@@ -21,14 +21,6 @@
     "url": "https://github.com/Mu2Group/MewFive/issues"
   },
   "homepage": "https://github.com/Mu2Group/MewFive#readme",
-  "jest": {
-    "globalSetup": "./jest-setup.js",
-    "globalTeardown": "./jest-teardown.js",
-    "testEnvironment": "jest-environment-jsdom",
-    "setupFilesAfterEnv": [
-      "@testing-library/jest-dom/extend-expect"
-    ]
-  },
   "devDependencies": {
     "@babel/core": "^7.18.6",
     "@babel/plugin-proposal-class-properties": "^7.18.6",

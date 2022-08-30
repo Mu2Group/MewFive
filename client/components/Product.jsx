@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Product = async (props) => {
+const Product = (props) => {
 
   // ProductID passed through from useHistory???
   const { productID } = props;
@@ -13,7 +13,7 @@ const Product = async (props) => {
   const [img, setImg] = useState('https://aliiissa.files.wordpress.com/2017/10/dyyy.png')
 
   // Populate fields on component mount
-  useEffect(() => {
+  useEffect(async () => {
     try {
       const res = fetch(`/product/${productID}`);
       const { productName, inventory, price, description, img } = res.json();

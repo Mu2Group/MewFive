@@ -12,8 +12,8 @@ const userRouter = require('./routes/userRouter');
 const productRouter = require('./routes/productRouter');
 
 app.use('/cart', cartRouter)
-app.use('/', userRouter);
 app.use('/productfeed', productRouter);
+app.use('/', userRouter);
 
 
 if (process.env.NODE_ENV === 'production') {

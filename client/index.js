@@ -16,8 +16,3 @@ root.render(
     <App />
   </BrowserRouter>
 );
-
-// render(
-//   <App />,
-//   document.getElementById('root')
-// );

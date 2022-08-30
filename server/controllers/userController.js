@@ -1,26 +1,28 @@
 const setUserSSIDCookie = require ('../models/allModels');
 const bcrypt = require('bcrypt');
+const Users = require ('../models/allModels');
 
 const userController = {};
 
 userController.createUser = async (req, res, next) => {
     try{
-    const { username, password, firstName, lastName, email, street, city, state, zipCode} = req.body;
+    const { username, password, firstname, lastname, email, street, city, state, zipcode} = req.body;
 
     //hash pw
     const hashedPW = await bcrypt.hash(password, 10);
-
     /* for sqlQuery involving insert need to insert through $params not string literals */
-    const params = [ username, hashedPW, firstName, lastName, email, street, city, state, zipCode ];
+    
+    const params = [username, hashedPW, firstname, lastname, email, street, city, state, zipcode ];
+
     const sqlQuery = `
-      INSERT INTO users (username, hashedPW, firstName, lastName, email, street, city, state, zipCode) 
+      INSERT INTO users (username, password, firstname, lastname, email, street, city, state, zipcode) 
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;`;
     
     const createdUser = await Users.query(sqlQuery, params);
 
-    console.log(createdUser.rows[0]._id);
-    res.locals.user_id = createdUser.rows[0]._id;
-    console.log('about to go to cookie middleware with', res.locals.user_id);
+    console.log(createdUser.rows[0].userid);
+    res.locals.userID = createdUser.rows[0].userid;
+    // console.log('about to go to cookie middleware with', res.locals.user_id);
     next();
 
     }
@@ -56,7 +58,7 @@ userController.verifyUser = async (req, res, next) => {
     else {
         const verifyPW = await bcrypt.compare(password, verifiedUser.rows[0].password)
         if (verifyPW) {
-        res.locals.user_id = verifiedUser.rows[0]._id;
+        res.locals.userID = verifiedUser.rows[0].userid;
         next();
         }// TO DO else redirect to sign up page
         else {

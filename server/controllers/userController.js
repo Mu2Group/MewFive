@@ -40,7 +40,7 @@ userController.createUser = async (req, res, next) => {
 userController.verifyUser = async (req, res, next) => {
     try{
     const { username, password } = req.body;
-
+        console.log('req.body', req.body)
     //checking if both fields are filled in
 
     if (username === undefined || password === undefined) {

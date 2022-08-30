@@ -19,9 +19,7 @@ const Signup = (props) => {
       state: document.getElementById('state').value,
       zipCode: document.getElementById('zipCode').value
     }
-    axios.post(`/signup`, {
-      signUp
-    })
+    axios.post(`/signup`, signUp)
       .then((data) => {
         //send user back to log-in
         setSignup(false)

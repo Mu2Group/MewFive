@@ -5,7 +5,16 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// console.log(path.join(__dirname, '../index.html'))
+
+const cartRouter = require('./routes/cartRouter');
+const userRouter = require('./routes/userRouter');
+const productRouter = require('./routes/productRouter');
+
+app.use('/cart', cartRouter)
+app.use('/', userRouter);
+app.use('/productfeed', productRouter);
+
+
 if (process.env.NODE_ENV === 'production') {
   console.log('running production mode');
   app.use('/build', express.static(path.resolve(__dirname, '../build')));

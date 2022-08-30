@@ -15,8 +15,8 @@ const Product = async (props) => {
   // Populate fields on component mount
   useEffect(() => {
     try {
-      const res = await fetch(`/product/${productID}`);
-      const { productName, inventory, price, description, img } = await res.json();
+      const res = fetch(`/product/${productID}`);
+      const { productName, inventory, price, description, img } = res.json();
       setProductName(productName);
       setInventory(inventory);
       setPrice(price);

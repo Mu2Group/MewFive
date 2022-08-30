@@ -8,8 +8,6 @@ import NavBar from './NavBar.jsx';
 import MiniProduct from './MiniProduct.jsx';
 import Product from './Product.jsx';
 
-import styles from '../stylesheets/navBar.scss';
-
 const style = {
   position: 'absolute',
   top: '30%',
@@ -47,27 +45,27 @@ const ProductFeed = () => {
   // Make fetch request for all in stock components on component load
   useEffect(async () => {
     try {
-      // const res = await fetch(`/productFeed`);
-      // const array = await res.json(); // Returns array of product info objects
+      const res = await fetch(`/productFeed`);
+      const array = await res.json(); // Returns array of product info objects
 
-      //****DUMMY DATA */
-      const array = [
-        {
-          productID: 0,
-          productName: 'Premier Protein', 
-          price: 49.99, 
-          img: 'https://i.ebayimg.com/images/g/CQwAAOSwjxZgaJU4/s-l500.jpg',
-          inventory: 99, 
-        },
-        {
-          productID: 1,
-          productName: 'glue', 
-          price: 24.99, 
-          img: 'https://m.media-amazon.com/images/I/51bu4W7E3TL._AC_SX679_.jpg',
-          inventory: 99, 
-        }
-      ]
-      //********END OF DUMMY DATA */
+      // //****DUMMY DATA */
+      // const array = [
+      //   {
+      //     productID: 0,
+      //     productName: 'Premier Protein', 
+      //     price: 49.99, 
+      //     img: 'https://i.ebayimg.com/images/g/CQwAAOSwjxZgaJU4/s-l500.jpg',
+      //     inventory: 99, 
+      //   },
+      //   {
+      //     productID: 1,
+      //     productName: 'glue', 
+      //     price: 24.99, 
+      //     img: 'https://m.media-amazon.com/images/I/51bu4W7E3TL._AC_SX679_.jpg',
+      //     inventory: 99, 
+      //   }
+      // ]
+      // //********END OF DUMMY DATA */
 
       // Clone productArr in state and write new product info to 
       const newProductArr = [...productArr];

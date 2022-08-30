@@ -13,20 +13,20 @@ const Product = (props) => {
   const [img, setImg] = useState('https://aliiissa.files.wordpress.com/2017/10/dyyy.png')
 
   // Populate fields on component mount
-  // useEffect(async () => {
-  //   try {
-  //     const res = await fetch(`/product/${productID}`);
-  //     const { productName, inventory, price, description, img } = await res.json();
-  //     setProductName(productName);
-  //     setInventory(inventory);
-  //     setPrice(price);
-  //     setDescription(description);
-  //     setImg(img);
-  //   }
-  //   catch (err) {
-  //     console.log('Error in Product useEffect GET request: ', err)
-  //   }
-  // }, [])
+  useEffect(async () => {
+    try {
+      const res = await fetch(`/product/${productID}`);
+      const { productName, inventory, price, description, img } = await res.json();
+      setProductName(productName);
+      setInventory(inventory);
+      setPrice(price);
+      setDescription(description);
+      setImg(img);
+    }
+    catch (err) {
+      console.log('Error in Product useEffect GET request: ', err)
+    }
+  }, [])
 
   // Change quantity by +1 or -1 with buttons
   const [qty, setQty] = useState(0);

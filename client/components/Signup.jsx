@@ -19,19 +19,17 @@ const Signup = (props) => {
       state: document.getElementById('state').value,
       zipCode: document.getElementById('zipCode').value
     }
-    setSignup(false)
-    //console.log(isSignup)
-    //   axios.post(`/signup`, {
-    //     signUp
-    //   })
-    //     .then((data) => {
-    //       //send user back to log-in
-    //       setSignup(false)
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-  };
+    axios.post(`/signup`, {
+      signUp
+    })
+      .then((data) => {
+        //send user back to log-in
+        setSignup(false)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+};
 
   return (
     <>

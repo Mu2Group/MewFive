@@ -12,16 +12,16 @@ const Login = () => {
       username: document.getElementById('username').value,
       password: document.getElementById('password').value
     };
-    navigate('/productFeed')
-    // axios.post(`/login`, {
-    //   loginObj
-    // })
-      // .then((userID) => {
-      //   console.log(userID);
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // };
+    axios.post(`/login`, {
+      loginObj
+    })
+    .then((userID) => {
+      console.log(userID);
+      navigate('/productFeed')
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

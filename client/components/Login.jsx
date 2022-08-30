@@ -12,9 +12,8 @@ const Login = () => {
       username: document.getElementById('username').value,
       password: document.getElementById('password').value
     };
-    axios.post(`/login`, {
-      loginObj
-    })
+    console.log({loginObj})
+    axios.post(`/login`, loginObj)
     .then((userID) => {
       console.log(userID);
       navigate('/productFeed')

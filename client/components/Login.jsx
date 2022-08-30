@@ -1,18 +1,21 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
+  const navigate = useNavigate();
+
+  //send login info to backend
   const handleLogin = (event) => {
     const loginObj = {
       username: document.getElementById('username').value,
       password: document.getElementById('password').value
     };
-    axios.post(`/login`, {
-      loginObj
-    })
-      let navigate = useNavigate();
-      navigate('/productFeed')
+    navigate('/productFeed')
+    // axios.post(`/login`, {
+    //   loginObj
+    // })
       // .then((userID) => {
       //   console.log(userID);
       // })

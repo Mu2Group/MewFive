@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Signup = () => {
+const Signup = (props) => {
 
+  const { setSignup } = props
   
+  //send sign up info to backend
   const handleSignup = (event) =>{
     const signUp = {
       username: document.getElementById('username').value,
@@ -16,15 +19,18 @@ const Signup = () => {
       state: document.getElementById('state').value,
       zipCode: document.getElementById('zipCode').value
     }
-      // axios.post(`/signup`, {
-      //   signUp
-      // })
-      //   .then((userID) => {
-      //     console.log(userID)
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
+    setSignup(false)
+    //console.log(isSignup)
+    //   axios.post(`/signup`, {
+    //     signUp
+    //   })
+    //     .then((data) => {
+    //       //send user back to log-in
+    //       setSignup(false)
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
   };
 
   return (

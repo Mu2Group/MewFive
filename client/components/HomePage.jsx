@@ -27,7 +27,7 @@ const HomePage = () => {
     <>
       {/* Conditional render for login/signup */}
       <div id='loginSignup'>
-        { isSignup ? <Signup/> : <Login/> }
+        { isSignup ? <Signup setSignup={setSignup}/> : <Login/> }
       </div>
       {/* Button for toggling isSignup */}
       <button id='toggleSignup' onClick={handleToggle}>

@@ -4,8 +4,11 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Box from '@mui/material/Box';
 
+import NavBar from './NavBar.jsx';
 import MiniProduct from './MiniProduct.jsx';
 import Product from './Product.jsx';
+
+import styles from '../stylesheets/navBar.scss';
 
 const style = {
   position: 'absolute',
@@ -113,6 +116,7 @@ const ProductFeed = () => {
           </Box>
         </Fade>
       </Modal>
+      <NavBar />
       <div>{productArr}</div>
     </>
   )

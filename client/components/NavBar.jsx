@@ -16,7 +16,9 @@ import Fade from '@mui/material/Fade';
 
 import CartModal from './CartModal.jsx';
 
-const pages = ['Cart, Signout'];
+import styles from '../stylesheets/navBar.scss';
+
+const pages = ['Cart', 'Signout'];
 
 const style = {
   position: 'absolute',
@@ -39,7 +41,7 @@ function NavBar() {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-å
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };

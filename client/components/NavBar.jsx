@@ -48,6 +48,13 @@ function NavBar() {
     console.log('handleClose clicked')
     setOpen(false);
   }
+
+  const handleSignOut = () => {
+    console.log('handlesignout clicked')
+    document.cookie = "SSID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    window.location.href = 'http://localhost:8080';
+  }
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -131,7 +138,7 @@ function NavBar() {
           </Button> :
           <Button
             key={page}
-            onClick={() => navigate('/')}
+            onClick={() => handleSignOut()}
             sx={{ my: 2, color: 'white', display: 'block' }}
           >
             {page}

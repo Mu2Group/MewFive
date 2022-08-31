@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const Product = (props) => {
 
   // ProductID passed through from useHistory???
-  const { productID } = props;
+  const { productID, handleClose } = props;
 
   //Initialize all fields in product page to be empty
   const [productName, setProductName] = useState('')
@@ -56,6 +56,7 @@ const Product = (props) => {
         })
       const data = await res.json()
       console.log('Successfully added to cart: ', data)
+      handleClose()
     }
     catch (err) {
       console.log('Error in Product handleAddToCart POST request: ', err)

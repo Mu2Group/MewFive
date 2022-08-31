@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Signup = (props) => {
 
+  const navigate = useNavigate()
+
   const { setSignup } = props
   
   //send sign up info to backend
@@ -21,8 +23,11 @@ const Signup = (props) => {
     }
     axios.post(`/signup`, signUp)
       .then((data) => {
-        //send user back to log-in
-        setSignup(false)
+        // //send user back to log-in
+        // setSignup(false)
+
+        // Send user to productFeed
+        navigate('/productFeed')
       })
       .catch((err) => {
         console.log(err);

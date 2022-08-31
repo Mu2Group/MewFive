@@ -93,7 +93,7 @@ const ProductFeed = () => {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <Product productID={productID}/>
+            <Product productID={productID} handleClose={handleClose}/>
           </Box>
         </Fade>
       </Modal>

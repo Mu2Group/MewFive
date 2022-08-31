@@ -2,7 +2,7 @@ const Inventory = require ('../models/allModels');
 
 const productController = {};
 
-//add product middleware
+//add product into inventory
 productController.addProduct = async (req, res, next) => {
   try {
     const { productname, quantity, price, description, img } = req.body; 

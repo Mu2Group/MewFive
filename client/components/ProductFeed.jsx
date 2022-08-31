@@ -41,53 +41,36 @@ const ProductFeed = () => {
   ])
 
   // console.log('productArr from useState: ', productArr)
-
+  useEffect(()=>{
+    if (productArr.length){
+      getFeed();  
+    }
+  }, [])
   // Make fetch request for all in stock components on component load
-  useEffect(async () => {
-    try {
-      const res = await fetch(`/productFeed`);
-      const array = await res.json(); // Returns array of product info objects
+  const getFeed = async () => {
+    const res = await fetch(`/productFeed`);
+    const array = await res.json(); // Returns array of product info objects
 
-      // //****DUMMY DATA */
-      // const array = [
-      //   {
-      //     productID: 0,
-      //     productName: 'Premier Protein', 
-      //     price: 49.99, 
-      //     img: 'https://i.ebayimg.com/images/g/CQwAAOSwjxZgaJU4/s-l500.jpg',
-      //     inventory: 99, 
-      //   },
-      //   {
-      //     productID: 1,
-      //     productName: 'glue', 
-      //     price: 24.99, 
-      //     img: 'https://m.media-amazon.com/images/I/51bu4W7E3TL._AC_SX679_.jpg',
-      //     inventory: 99, 
-      //   }
-      // ]
-      // //********END OF DUMMY DATA */
-
-      // Clone productArr in state and write new product info to 
-      const newProductArr = [...productArr];
-      for (let i = 0; i < array.length; i++) {
-        const {productID, productName, price, inventory, img} = array[i]
-        const element = <MiniProduct 
-                          productID={productID}
-                          productName={productName} 
-                          price={price} 
-                          img={img}
-                          inventory={inventory} 
-                          setProductID={setProductID}
-                          handleOpen={handleOpen}/>
-        newProductArr[i] = element;
-      }
-      console.log('newProductArr after writing: ', newProductArr)
-      setProductArr(newProductArr)
+    // Clone productArr in state and write new product info to 
+    const newProductArr = [...productArr];
+    for (let i = 0; i < array.length; i++) {
+      console.log('each array is: ', array[i])
+      const {productid, productname, price, quantity, img} = array[i]
+      const element = <MiniProduct 
+                        productID={productid}
+                        productName={productname} 
+                        price={price} 
+                        img={img}
+                        inventory={quantity} 
+                        setProductID={setProductID}
+                        handleOpen={handleOpen}/>
+      newProductArr[i] = element;
+      console.log('newProductArr: ', newProductArr)
     }
-    catch (err) {
-      console.log('Error in ProductFeed useEffect GET request: ', err)
-    }
-  }, []);
+    console.log('newProductArr after writing: ', newProductArr)
+    setProductArr(newProductArr)
+  }
+  
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -110,7 +93,7 @@ const ProductFeed = () => {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <Product productID={productID}/>
+            <Product productID={productID} handleClose={handleClose}/>
           </Box>
         </Fade>
       </Modal>

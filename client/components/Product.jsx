@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const Product = (props) => {
 
   // ProductID passed through from useHistory???
-  const { productID } = props;
+  const { productID, handleClose } = props;
 
   //Initialize all fields in product page to be empty
   const [productName, setProductName] = useState('')
@@ -13,12 +13,18 @@ const Product = (props) => {
   const [img, setImg] = useState('https://aliiissa.files.wordpress.com/2017/10/dyyy.png')
 
   // Populate fields on component mount
-  useEffect(async () => {
+  useEffect(() => {
+    getProductData()
+  }, [])
+
+  const getProductData = async () => {
     try {
-      const res = fetch(`/product/${productID}`);
-      const { productName, inventory, price, description, img } = res.json();
-      setProductName(productName);
-      setInventory(inventory);
+      const res = await fetch(`/productFeed/${productID}`);
+      const data = await res.json();
+      const { productname, quantity, price, description, img } = data[0]
+
+      setProductName(productname);
+      setInventory(quantity);
       setPrice(price);
       setDescription(description);
       setImg(img);
@@ -26,30 +32,31 @@ const Product = (props) => {
     catch (err) {
       console.log('Error in Product useEffect GET request: ', err)
     }
-  }, [])
+  }
 
   // Change quantity by +1 or -1 with buttons
   const [qty, setQty] = useState(0);
   const handleChangeQty = (val) => {
     if (val === -1 && qty <= 0) {}
-    else setQty(qty += val)
+    else setQty(qty => qty += val)
   }
 
   // Add to cart with post request to backend
   const handleAddToCart = async () => {
     try {
-      const res = await fetch('/cart',
+      const userID = document.cookie.slice(document.cookie.indexOf('=') + 1)
+      const res = await fetch(`/cart/${userID}/${productID}`,
         {
           method: 'POST',
-          headers: '',
-          body: {
-            productID: productID,
-            userID: userID,
-            qty: qty
-          }
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({quantity: qty}),
         })
       const data = await res.json()
       console.log('Successfully added to cart: ', data)
+      handleClose()
     }
     catch (err) {
       console.log('Error in Product handleAddToCart POST request: ', err)

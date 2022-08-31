@@ -3,7 +3,12 @@ const Inventory = require('../models/allModels');
 
 const cartController = {};
 
+//SELECT i.*
+//FROM inventory i LEFT JOIN carts c 
+//ON p.productid = c.productid 
+//Mu4abc!@#
 // WORKS
+// add product name, price, quantity, image!
 cartController.getProducts = async (req, res, next) => {
     const userID = req.params.userID;
     try{

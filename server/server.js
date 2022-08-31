@@ -9,9 +9,11 @@ app.use(express.urlencoded({ extended: true }));
 const cartRouter = require('./routes/cartRouter');
 const userRouter = require('./routes/userRouter');
 const productRouter = require('./routes/productRouter');
+const checkoutRouter = require('./routes/checkoutRouter');
 
 app.use('/cart', cartRouter)
 app.use('/productfeed', productRouter);
+app.use('/checkout', checkoutRouter);
 app.use('/', userRouter);
 
 

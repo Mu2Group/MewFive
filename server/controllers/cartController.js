@@ -12,7 +12,10 @@ const cartController = {};
 cartController.getProducts = async (req, res, next) => {
     const userID = req.params.userID;
     try{
-        const sqlQuery = `SELECT * FROM carts WHERE userid = ${userID};`;
+        const sqlQuery = `SELECT c.userid, i.productid, 
+        i.productname, c.quantity, i.price, i.img
+        FROM inventory i JOIN carts c 
+        ON i.productid = c.productid WHERE c.userid = ${userID};`;
         const cart = await Carts.query(sqlQuery);
         console.log(cart.rows)
         res.locals.cart = cart.rows;

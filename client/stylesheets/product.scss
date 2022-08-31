@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;700&display=swap');
+
+#productModal {
+  display: flex;
+  flex-direction: column;
+
+  h1#productName {
+    font-size: 56px;
+    font-family: 'Bebas Neue', cursive;
+  }
+  .productContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 5%;
+
+    margin-bottom: 5%;
+    margin-top: 5%;
+
+    font-family: 'Roboto Mono', monospace;
+
+    .productImg {
+      img {
+        border-radius: 8px;
+        box-shadow: 0 8px 16px -16px rgb(128, 128, 128);
+      }
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      h2 {
+        font-size: 48px;
+        margin-bottom: 5%;
+      }
+    }
+
+  }
+
+  .currInventory {
+    text-align: right;
+
+    span {
+      color: rgb(0, 158, 0);
+    }
+    font-family: 'Bebas Neue', cursive;
+
+  }
+
+  .changeQty {
+    font-family: 'Bebas Neue', cursive;
+    text-align: right;
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+
+      margin-top: 2%;
+      margin-bottom: 2%;
+      button {
+        width: 36px;
+        height: 36px;
+        background: none;
+        border: none;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 8px;
+
+        &:hover {
+          transform: scale(1.05);
+          background: rgba(192, 192, 192, 0.308);
+        }
+      }
+    }
+  }
+  #addCart {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    button {
+      width: 200px;
+      font-size: 40px;
+      font-family: 'Bebas Neue', cursive;
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(white 70%, rgba(128, 128, 128, 0.261) 99%);
+      &:hover {
+        background: linear-gradient(white 50%, rgba(128, 128, 128, 0.261) 90%);
+        box-shadow: 0px 4px 4px rgb(128, 128, 128, 0.261);
+        transition-duration: 300ms;
+      }
+    }
+  }
+}

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import style from '../stylesheets/product.scss'
+
 const Product = (props) => {
 
   // ProductID passed through from useHistory???
@@ -64,7 +66,7 @@ const Product = (props) => {
   }
 
   return (
-    <div>
+    <div id='productModal'>
       <h1 id='productName'>{productName}</h1>
       <div className="productContainer">
         <div className="productImg">
@@ -77,7 +79,6 @@ const Product = (props) => {
           </p>
         </div>
       </div>
-      <button onClick={handleAddToCart}>Add to Cart</button>
       <div className="currInventory">
         <h1><span id='green'>In stock: </span>{inventory}</h1>
       </div>
@@ -85,16 +86,19 @@ const Product = (props) => {
         <h1>QTY: {qty}</h1>
         <div className="button">
           <button onClick={() => handleChangeQty(1)}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
             </svg>
           </button>
           <button onClick={() => handleChangeQty(-1)}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
               <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
             </svg>
           </button>
         </div>
+      </div>
+      <div id='addCart'>
+        <button onClick={handleAddToCart}>Add to Cart</button>
       </div>
       
     </div>

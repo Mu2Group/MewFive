@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;700&display=swap');
 
 #root {
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+font-family: 'Bebas Neue', cursive;
+
+  h1 {
+    font-size: 60px;
+  }
 
   #loginSignup {
     display: grid;
@@ -42,6 +49,9 @@ align-items: center;
     outline: none;
     background: none;
 
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+
     border: 1px solid rgba(128, 128, 128, 0.597);
     border-radius: 14px;
 
@@ -56,6 +66,11 @@ align-items: center;
     margin-top: 16px;
     border: none;
     background: none;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 24px;
+
+    border-radius: 12px;
+
     &:hover {
       box-shadow: 0px 4px 8px gray;
     }

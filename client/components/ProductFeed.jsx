@@ -10,11 +10,11 @@ import Product from './Product.jsx';
 
 const style = {
   position: 'absolute',
-  top: '30%',
+  top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '50%',
-  height: '30%',
+  height: '80%',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,

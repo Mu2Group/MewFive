@@ -28,7 +28,7 @@ const Checkout = () => {
     .catch((err) => {
       console.log('checkout unsuccessful', err)
     })
-    navigate('/productFeed');
+    navigate('/success');
   }
   //populate cart info on page load
   useEffect(() => {
@@ -46,7 +46,7 @@ const Checkout = () => {
         totalPrice += cartArr[i].quantity * cartArr[i].price
       }
       console.log({totalPrice})
-      setPriceElement(totalPrice) 
+      setPriceElement(totalPrice.toFixed(2)) 
       console.log({priceElement})     
     }
     catch(err) {

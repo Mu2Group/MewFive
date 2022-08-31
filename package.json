@@ -7,7 +7,7 @@
     "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --hot --color\" \"nodemon ./server/server.js\"",
     "start": "NODE_ENV=production nodemon server/server.js --open",
     "build": "webpack",
-    "test": "jest --verbose --watchAll --coverage"
+    "test": "jest --verbose --watchAll"
   },
   "repository": {
     "type": "git",

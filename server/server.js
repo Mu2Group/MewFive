@@ -22,20 +22,19 @@ if (process.env.NODE_ENV === 'production') {
   console.log('running production mode');
   app.use('/build', express.static(path.resolve(__dirname, '../build')));
 
-  app.get('/', (req, res) => {
-    return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
-  });
-};
+  app.get('/', (req, res) => res.status(200).sendFile(path.resolve(__dirname, '../index.html')));
+}
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'), function(err) {
+  res.sendFile(path.join(__dirname, '../index.html'), (err) => {
     if (err) {
-      res.status(500).send(err)
+      res.status(500).send(err);
     }
-  })
-})
+  });
+});
 
-app.use('*', (req, res) => res.sendStatus(404)) // catch-all route handler for any requests to an uknown route
+// catch-all route handler for any requests to an unknown route
+app.use((req, res) => res.sendStatus(404));
 
 app.use((err, req, res, next) => {
   const defaultErr = {
@@ -43,11 +42,11 @@ app.use((err, req, res, next) => {
     status: 500,
     message: { err: 'An error occurred' },
   };
-  const errorObj = Object.assign({}, defaultErr, err);
+  const errorObj = { ...defaultErr, ...err };
   console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-app.listen(PORT, () => console.log(`listening on port ${PORT}`))
+const server = app.listen(PORT, () => console.log(`listening on port ${PORT}`));
 
-module.exports = app;
+module.exports = server;

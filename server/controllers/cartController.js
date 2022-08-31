@@ -28,32 +28,30 @@ cartController.getProducts = async (req, res, next) => {
 }
 // WORKS
 cartController.updateCart = async (req, res, next) => {
-    const userID = req.params.userID;
-    const productID = req.params.productID
-    const { quantity } = req.body;
+  const { userID } = req.params;
+  const { productID } = req.params;
+  const { quantity } = req.body;
 
-    try{
-        const sqlQuery = `
+  try {
+    const sqlQuery = `
           UPDATE carts 
           SET quantity = ${quantity} 
           WHERE userID = ${userID} AND productID = ${productID}
           RETURNING *
-        `; 
-        const updatedCartItem = await Carts.query(sqlQuery); 
-        console.log(updatedCartItem);
-        res.locals.updatedCartItem = updatedCartItem.rows[0]; 
+        `;
+    const updatedCartItem = await Carts.query(sqlQuery);
+    console.log(updatedCartItem);
+    res.locals.updatedCartItem = updatedCartItem.rows[0];
 
-        return next(); 
-    }
-    catch {
-        console.log('caught something in cartController updateProduct');
-        return next('could not update cart');
-      }
+    return next();
+  } catch (err) {
+    console.log('caught something in cartController updateProduct');
+    return next('could not update cart');
+  }
 
-    
-    // try{
-    //     let cart = await Carts.findOne({userId});
-    //     let product = await Inventory.findOne({_id: productId});
+  // try{
+  //     let cart = await Carts.findOne({userId});
+  //     let product = await Inventory.findOne({_id: productId});
 
     //     if(!product)
     //         return res.status(404).send('product not found!');
@@ -85,9 +83,9 @@ cartController.updateCart = async (req, res, next) => {
 }
 // add product to user cart
 cartController.addProduct = async (req, res, next) => {
-    const userID = req.params.userID;
-    const productID = req.params.productID
-    const { quantity } = req.body;
+  const { userID } = req.params;
+  const { productID } = req.params;
+  const { quantity } = req.body;
 
     try{
       // check if product exists in user cart then update otherwise add new row to carts db
@@ -113,12 +111,11 @@ cartController.addProduct = async (req, res, next) => {
         const sqlQuery = `
           INSERT INTO carts (quantity, userid, productid)
           VALUES ($1, $2, $3) RETURNING *; 
-        `; 
-        const addedProduct = await Carts.query(sqlQuery, params); 
-        res.locals.addedProduct = addedProduct.rows[0]; 
-        return next(); 
-      }
-
+        `;
+    const addedProduct = await Carts.query(sqlQuery, params);
+    console.log({ addedProduct });
+    res.locals.addedProduct = addedProduct.rows[0];
+    return next();
 
         // let cart = await Carts.findOne({userId});
         // let product = await Inventory.findOne({_id: productId});

@@ -3,7 +3,7 @@ const Inventory = require('../models/allModels');
 
 const cartController = {};
 
-//SELECT i.*
+//SELECT inventory.productname
 //FROM inventory i LEFT JOIN carts c 
 //ON p.productid = c.productid 
 //Mu4abc!@#
@@ -12,7 +12,10 @@ const cartController = {};
 cartController.getProducts = async (req, res, next) => {
     const userID = req.params.userID;
     try{
-        const sqlQuery = `SELECT * FROM carts WHERE userid = ${userID};`;
+        const sqlQuery = `SELECT c.*, i.*
+        FROM carts c LEFT JOIN inventory i
+        ON c.productid = i.productid
+        WHERE c.userid = ${userID};`;
         const cart = await Carts.query(sqlQuery);
         console.log(cart.rows)
         res.locals.cart = cart.rows;

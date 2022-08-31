@@ -17,8 +17,8 @@ userRouter.post('/login',
     return res.status(200).send('user logged in!');
 });
     
-userRouter.get('/*', (req, res) => {
-    return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
-});  
+// userRouter.get('/*', (req, res) => {
+//     return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
+// });  
 
 module.exports = userRouter;

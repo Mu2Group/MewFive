@@ -28,7 +28,7 @@ const Checkout = () => {
     .catch((err) => {
       console.log('checkout unsuccessful', err)
     })
-    navigate('/productFeed');
+    navigate('/success');
   }
   //populate cart info on page load
   useEffect(() => {

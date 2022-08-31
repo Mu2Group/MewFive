@@ -8,7 +8,8 @@ const CartModal = () => {
   // Populate on load
   useEffect(async () => {
     // Request data from for user cart
-    const res = await fetch('/cart')
+    const userID = document.cookie.slice(document.cookie.indexOf('=') + 1)
+    const res = await fetch(`/cart/${userID}`)
     const cartArr = await res.json()
 
     // Format and push data to formatted <li> elements

@@ -1,5 +1,5 @@
-const Carts = require ('../models/allModels');
-const Inventory = require ('../models/allModels');
+const Carts = require('../models/allModels');
+const Inventory = require('../models/allModels');
 
 const cartController = {};
 
@@ -81,6 +81,12 @@ cartController.addProduct = async (req, res, next) => {
     const productID = req.params.productID
     const { quantity } = req.body;
 
+    console.log('userID:', userID)
+    console.log('productID:', productID)
+    console.log('quantity', quantity)
+
+    console.log('userID: ', typeof userID)
+
     try{
         const params = [quantity, userID, productID];
         console.log(params); 
@@ -129,7 +135,7 @@ cartController.addProduct = async (req, res, next) => {
         //     return res.status(201).send(newCart);
         // }       
     }
-    catch {
+    catch(err) {
         console.log('caught something in cartController addProduct');
         return next('could add product to cart');
       }
@@ -144,7 +150,7 @@ cartController.deleteProduct = async (req, res, next) => {
         res.locals.deletedProduct = deletedProduct.rows;
         return next();
       }
-      catch {
+      catch(err) {
         console.log('caught something in cartController deleteProduct');
         return next('could not delete product from cart');
       }

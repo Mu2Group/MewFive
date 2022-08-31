@@ -11,13 +11,13 @@ const Signup = (props) => {
     const signUp = {
       username: document.getElementById('username').value,
       password: document.getElementById('password').value,
-      firstName: document.getElementById('firstName').value,
-      lastName: document.getElementById('lastName').value,
+      firstname: document.getElementById('firstName').value,
+      lastname: document.getElementById('lastName').value,
       email: document.getElementById('email').value,
       street: document.getElementById('street').value,
       city: document.getElementById('city').value,
       state: document.getElementById('state').value,
-      zipCode: document.getElementById('zipCode').value
+      zipcode: document.getElementById('zipCode').value
     }
     axios.post(`/signup`, signUp)
       .then((data) => {

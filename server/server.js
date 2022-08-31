@@ -17,7 +17,6 @@ app.use('/productfeed', productRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/', userRouter);
 
-
 if (process.env.NODE_ENV === 'production') {
   console.log('running production mode');
   app.use('/build', express.static(path.resolve(__dirname, '../build')));

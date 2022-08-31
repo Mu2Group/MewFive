@@ -1,21 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Checkout = () => {
 
-  const handleConfirm = () => {
-    const street = document.getElementById('street').value;
-    const city = document.getElementById('city').value;
-    const state = document.getElementById('state').value;
-    const zipCode = document.getElementById('zipCode').value;
+  const [priceElement, setPriceElement] = useState(0)
 
-    const creditCardNo = document.getElementById('creditCardNo').value;
-    const expDate = document.getElementById('expDate').value;
-    const cvCode = document.getElementById('cvCode').value;
-    const CCzipCode = document.getElementById('CCzipCode').value;
-    
-    
+  const handleConfirm = async () => {
+    const checkoutInfo = { 
+      street : document.getElementById('street').value,
+      city : document.getElementById('city').value,
+      state : document.getElementById('state').value,
+      zipCode : document.getElementById('zipCode').value,
+
+      creditCardNo : document.getElementById('creditCardNo').value,
+      expDate : document.getElementById('expDate').value,
+      cvCode : document.getElementById('cvCode').value,
+      CCzipCode : document.getElementById('CCzipCode').value,
+      userID : document.cookie.slice(document.cookie.indexOf('=') + 1)
+    }
+
+    axios.post('/checkout', checkoutInfo)
+    .then((data) => {
+      console.log('checkout response:', data)
+      console.log('checkout successful!')
+    })
+    .catch((err) => {
+      console.log('checkout unsuccessful', err)
+    })
   }
+  //populate cart info on page load
+  useEffect(() => {
+    getCartData()
+  }, [])
 
+  const getCartData = async () => {
+    try{
+      const resCart = await fetch(`/cart/${userID}`)
+      const cartArr = await resCart.json()
+      console.log('cart:' , cartArr)
+      const totalPrice = 0
+      for(let i = 0; i < cartArr.length; i++){
+        totalPrice += cartArr[i].quantity * cartArr[i].price
+      }
+      setPriceElement(totalPrice)      
+    }
+    catch(err) {
+      console.log('Error in checkout useEffect', err)
+    }
+  };
+  
   return (
     <div className="checkout">
       <div className="shipping">
@@ -39,6 +72,9 @@ const Checkout = () => {
         <input type={'text'} id="CCzipCode" placeholder='Zip Code'></input>
       </div>
       <button id='confirm' onClick={handleConfirm}></button>
+      <div className="cart">
+          ${priceElement}
+      </div>
     </div>
   )
 }

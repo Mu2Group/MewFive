@@ -89,12 +89,6 @@ cartController.addProduct = async (req, res, next) => {
     const productID = req.params.productID
     const { quantity } = req.body;
 
-    console.log('userID:', userID)
-    console.log('productID:', productID)
-    console.log('quantity', quantity)
-
-    console.log('userID: ', typeof userID)
-
     try{
         const params = [quantity, userID, productID];
         console.log(params); 

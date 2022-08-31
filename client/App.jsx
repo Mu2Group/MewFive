@@ -4,7 +4,7 @@ import { Routes, Route, BrowserRouter} from 'react-router-dom';
 import HomePage from './components/HomePage.jsx';
 import ProductFeed from './components/ProductFeed.jsx'
 // import Product from './components/Product.jsx'
-// import Checkout from './components/Checkout.jsx';
+import Checkout from './components/Checkout.jsx';
 
 const App = () => {
 
@@ -14,6 +14,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<HomePage />}/>
         <Route path='/productFeed' element={<ProductFeed />}/>
+        <Route path='/checkout' element={<Checkout />}></Route>
         {/* <Route path='/productFeed' element={<ProductFeed />}></Route>
         <Route path='/checkout' element={<Checkout />}></Route> */}
       </Routes>

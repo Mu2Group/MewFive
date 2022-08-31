@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
@@ -34,14 +34,20 @@ const style = {
 };
 
 function NavBar() {
+  const navigate = useNavigate();
 
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+  const handleOpen = () => {
+    console.log('handleOpen clicked')
+    setOpen(true);
+  }
+  const handleClose = () => {
+    console.log('handleClose clicked')
+    setOpen(false);
+  }
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -72,7 +78,7 @@ function NavBar() {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <CartModal />
+            <CartModal handleClose={handleClose}/>
           </Box>
         </Fade>
       </Modal>
@@ -109,19 +115,27 @@ function NavBar() {
           {pages.map((page) => (
             <MenuItem key={page} onClick={handleCloseNavMenu}>
               <Typography textAlign="center">{page}</Typography>
-            </MenuItem>
+            </MenuItem>  
           ))}
         </Menu>
       </Box>
       <Box sx={{ marginLeft: 'auto', flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
       {pages.map((page) => (
-        <Button
-          key={page}
-          onClick={handleCloseNavMenu}
-          sx={{ my: 2, color: 'white', display: 'block' }}
-        >
-          {page}
-        </Button>
+        (page === 'Cart')? 
+          <Button
+            key={page}
+            onClick={handleOpen}
+            sx={{ my: 2, color: 'white', display: 'block' }}
+          >
+            {page}
+          </Button> :
+          <Button
+            key={page}
+            onClick={() => navigate('/')}
+            sx={{ my: 2, color: 'white', display: 'block' }}
+          >
+            {page}
+          </Button>
       ))}
       </Box>
     </nav>

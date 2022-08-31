@@ -22,7 +22,7 @@ cartController.getProducts = async (req, res, next) => {
         return next();
     }
     catch {
-        console.log('caught something in cartController getProducta');
+        console.log('caught something in cartController getProducts');
         return next('could not get cart products');
       }
 }

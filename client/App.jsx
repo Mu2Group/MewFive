@@ -3,6 +3,7 @@ import { Routes, Route, BrowserRouter} from 'react-router-dom';
 
 import HomePage from './components/HomePage.jsx';
 import ProductFeed from './components/ProductFeed.jsx'
+import Stripe from './components/Stripe.jsx'
 // import Product from './components/Product.jsx'
 // import Checkout from './components/Checkout.jsx';
 
@@ -13,7 +14,8 @@ const App = () => {
     <h1>Hello e-commerce</h1>
       <Routes>
         <Route path='/' element={<HomePage />}/>
-        <Route path='/productFeed' element={<ProductFeed />}/>
+        <Route path='/productFeed' element={<Stripe />}/>
+        <Route path= '/checkout' element= {<Stripe/>}/>
         {/* <Route path='/productFeed' element={<ProductFeed />}></Route>
         <Route path='/checkout' element={<Checkout />}></Route> */}
       </Routes>

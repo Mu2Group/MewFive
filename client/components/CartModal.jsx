@@ -47,6 +47,10 @@ const CartModal = (props) => {
     handleClose(); // Closes modal 
     navigate('/checkout'); // Navigates to /checkout page
   }
+  // const handleCheckoutStripe = () => {
+  //   handleClose(); // Closes modal 
+  //   navigate('/stripe'); // Navigates to /checkout page
+  // }
 
   return (
     <div>
@@ -63,6 +67,9 @@ const CartModal = (props) => {
         ))}
       </ul>
       <button id='checkout' onClick={handleCheckout}>Checkout</button>
+      <form action="/checkout/create-checkout-session" method="POST">
+      <button id='checkoutStripe'>Checkout Stripe</button>
+    </form>
     </div>
   )
 }

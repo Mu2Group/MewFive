@@ -4,6 +4,7 @@ import axios from 'axios';
 const Checkout = () => {
 
   const [priceElement, setPriceElement] = useState(0)
+  const userID = document.cookie.slice(document.cookie.indexOf('=') + 1)
 
   const handleConfirm = async () => {
     const checkoutInfo = { 
@@ -16,10 +17,10 @@ const Checkout = () => {
       expDate : document.getElementById('expDate').value,
       cvCode : document.getElementById('cvCode').value,
       CCzipCode : document.getElementById('CCzipCode').value,
-      userID : document.cookie.slice(document.cookie.indexOf('=') + 1)
+      userID : userID
     }
 
-    axios.post('/checkout', checkoutInfo)
+    axios.post(`/checkout/${userID}`, checkoutInfo)
     .then((data) => {
       console.log('checkout response:', data)
       console.log('checkout successful!')
@@ -37,12 +38,15 @@ const Checkout = () => {
     try{
       const resCart = await fetch(`/cart/${userID}`)
       const cartArr = await resCart.json()
-      console.log('cart:' , cartArr)
-      const totalPrice = 0
+      console.log('cart array from fetch request', {cartArr})
+      console.log('cart in frontend:' , cartArr)
+      let totalPrice = 0
       for(let i = 0; i < cartArr.length; i++){
         totalPrice += cartArr[i].quantity * cartArr[i].price
       }
-      setPriceElement(totalPrice)      
+      console.log({totalPrice})
+      setPriceElement(totalPrice) 
+      console.log({priceElement})     
     }
     catch(err) {
       console.log('Error in checkout useEffect', err)
@@ -71,7 +75,7 @@ const Checkout = () => {
         <input type={'text'} id="cvCode" placeholder='CV Code'></input>
         <input type={'text'} id="CCzipCode" placeholder='Zip Code'></input>
       </div>
-      <button id='confirm' onClick={handleConfirm}></button>
+      <button id='confirm' onClick={handleConfirm}>Submit Payment</button>
       <div className="cart">
           ${priceElement}
       </div>

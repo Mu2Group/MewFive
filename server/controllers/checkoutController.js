@@ -7,11 +7,10 @@ const checkoutController = {};
 checkoutController.checkout = async (req, res, next) => {
     const userID = req.params.userID;
     // console.log({userID})
-    const { quantity } = req.body;
     try {
         const sqlQuery1 = `SELECT * FROM carts WHERE userid = ${userID};`;
         const cart = await Carts.query(sqlQuery1);
-        console.log('cart', cart)
+        console.log('cart in backend', cart)
         // put data into array [{productID: 1, quantity: 14}, {productID: 2, quantity: 7}]
 
         const sqlQuery2 = `DELETE FROM carts WHERE userId = ${userID} RETURNING *;`;

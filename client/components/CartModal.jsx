@@ -49,7 +49,7 @@ const CartModal = (props) => {
 
   const handleCheckout = () => {
     handleClose(); // Closes modal 
-    navigate('/'); // Navigates to /checkout page
+    navigate('/checkout'); // Navigates to /checkout page
   }
 
   return (

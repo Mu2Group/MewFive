@@ -41,36 +41,36 @@ const ProductFeed = () => {
   ])
 
   // console.log('productArr from useState: ', productArr)
-
+  useEffect(()=>{
+    if (productArr.length){
+      getFeed();  
+    }
+  }, [])
   // Make fetch request for all in stock components on component load
-  useEffect(async () => {
-    try {
-      const res = await fetch(`/productFeed`);
-      const array = await res.json(); // Returns array of product info objects
+  const getFeed = async () => {
+    const res = await fetch(`/productFeed`);
+    const array = await res.json(); // Returns array of product info objects
 
-      // Clone productArr in state and write new product info to 
-      const newProductArr = [...productArr];
-      for (let i = 0; i < array.length; i++) {
-        console.log('each array is: ', array[i])
-        const {productid, productname, price, quantity, img} = array[i]
-        const element = <MiniProduct 
-                          productID={productid}
-                          productName={productname} 
-                          price={price} 
-                          img={img}
-                          inventory={quantity} 
-                          setProductID={setProductID}
-                          handleOpen={handleOpen}/>
-        newProductArr[i] = element;
-        console.log('newProductArr: ', newProductArr)
-      }
-      console.log('newProductArr after writing: ', newProductArr)
-      setProductArr(newProductArr)
+    // Clone productArr in state and write new product info to 
+    const newProductArr = [...productArr];
+    for (let i = 0; i < array.length; i++) {
+      console.log('each array is: ', array[i])
+      const {productid, productname, price, quantity, img} = array[i]
+      const element = <MiniProduct 
+                        productID={productid}
+                        productName={productname} 
+                        price={price} 
+                        img={img}
+                        inventory={quantity} 
+                        setProductID={setProductID}
+                        handleOpen={handleOpen}/>
+      newProductArr[i] = element;
+      console.log('newProductArr: ', newProductArr)
     }
-    catch (err) {
-      console.log('Error in ProductFeed useEffect GET request: ', err)
-    }
-  }, []);
+    console.log('newProductArr after writing: ', newProductArr)
+    setProductArr(newProductArr)
+  }
+  
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {

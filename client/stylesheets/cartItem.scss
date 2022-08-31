@@ -1,0 +1,10 @@
+li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+}

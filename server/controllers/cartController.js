@@ -32,6 +32,10 @@ cartController.updateCart = async (req, res, next) => {
     const productID = req.params.productID
     const { quantity } = req.body;
 
+    console.log('userid', userID)
+    console.log('productID', productID)
+    console.log('quantity', quantity)
+
     try{
         const sqlQuery = `
           UPDATE carts 

@@ -29,6 +29,24 @@ font-family: 'Bebas Neue', cursive;
       div {
         font-size: 40px;
       }
+      button {
+        margin-top: 16px;
+        border: none;
+        background: none;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 24px;
+    
+        border-radius: 12px;
+    
+        &:hover {
+          box-shadow: 0px 4px 8px gray;
+        }
+    
+        &#toggleSignup {
+          width: 150px;
+        }
+    
+      }
     }
 
     .sign-up {
@@ -40,6 +58,24 @@ font-family: 'Bebas Neue', cursive;
 
       div {
         font-size: 30px;
+      }
+      button {
+        margin-top: 16px;
+        border: none;
+        background: none;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 24px;
+    
+        border-radius: 12px;
+    
+        &:hover {
+          box-shadow: 0px 4px 8px gray;
+        }
+    
+        &#toggleSignup {
+          width: 150px;
+        }
+    
       }
     }
 
@@ -62,7 +98,7 @@ font-family: 'Bebas Neue', cursive;
     margin-top: 8px;
   }
 
-  button {
+  #toggleSignup {
     margin-top: 16px;
     border: none;
     background: none;
@@ -80,4 +116,5 @@ font-family: 'Bebas Neue', cursive;
     }
 
   }
+  
 }

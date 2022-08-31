@@ -1,0 +1,26 @@
+button {
+  margin-top: 16px;
+  border: none;
+  background: none;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 24px;
+
+  border-radius: 12px;
+
+  &:hover {
+    box-shadow: 0px 4px 8px gray;
+  }
+
+  &#toggleSignup {
+    width: 150px;
+  }
+
+}
+
+#productArr {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  column-gap: 5%;
+  row-gap: 5%;
+}

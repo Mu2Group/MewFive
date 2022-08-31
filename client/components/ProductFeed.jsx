@@ -8,6 +8,8 @@ import NavBar from './NavBar.jsx';
 import MiniProduct from './MiniProduct.jsx';
 import Product from './Product.jsx';
 
+import styles from '../stylesheets/productFeed.scss';
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -98,7 +100,7 @@ const ProductFeed = () => {
         </Fade>
       </Modal>
       <NavBar />
-      <div>{productArr}</div>
+      <div id='productArr'>{productArr}</div>
     </>
   )
 }

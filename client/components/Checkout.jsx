@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 const Checkout = () => {
-
+  const navigate = useNavigate();
   const [priceElement, setPriceElement] = useState(0)
   const userID = document.cookie.slice(document.cookie.indexOf('=') + 1)
 
@@ -28,6 +28,7 @@ const Checkout = () => {
     .catch((err) => {
       console.log('checkout unsuccessful', err)
     })
+    navigate('/productFeed');
   }
   //populate cart info on page load
   useEffect(() => {
